@@ -1,0 +1,21 @@
+.todo-preview {
+	width: 60%;
+	padding: 15px;
+	background: white;
+	border-radius: 10px;
+	transition: width 0.3s;
+}
+.empty {
+	width: 20%;
+	border-radius: 7px;
+	padding: 0;
+
+	/* padding-top: 30px; */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.empty .todo-preview__empty-text {
+	/* transform: rotate(90deg); */
+	font-weight: 600;
+}

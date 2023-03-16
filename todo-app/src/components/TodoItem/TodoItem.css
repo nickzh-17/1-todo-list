@@ -1,0 +1,21 @@
+.todo-item {
+	position: relative;
+	display: flex;
+	gap: 10px;
+	align-items: flex-start;
+}
+.todo-item__info {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	cursor: pointer;
+	border-radius: 5px;
+}
+.todo-item__info:hover {
+	background: rgb(211, 211, 211, 0.5);
+}
+
+.todo-item__title {
+	color: #363636;
+}
