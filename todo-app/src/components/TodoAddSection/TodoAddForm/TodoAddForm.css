@@ -1,0 +1,22 @@
+.add-form {
+	display: flex;
+	justify-content: space-between;
+}
+.add-form__fields-section {
+	display: flex;
+	gap: 15px;
+}
+
+.add-form__button {
+	border: 1px solid rgb(211, 211, 211, 0.5);
+	background: transparent;
+	padding: 5px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.add-form__button:hover {
+	border: none;
+	padding: 6px;
+	background: rgb(211, 211, 211, 0.5);
+}

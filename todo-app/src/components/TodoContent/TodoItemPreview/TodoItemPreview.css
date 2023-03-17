@@ -3,8 +3,15 @@
 	padding: 15px;
 	background: white;
 	border-radius: 10px;
-	transition: width 0.3s;
+	transition: all 0.7s;
 }
+
+.todo-preview.noTasks {
+	width: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
 .empty {
 	width: 20%;
 	border-radius: 7px;
@@ -18,4 +25,5 @@
 .empty .todo-preview__empty-text {
 	/* transform: rotate(90deg); */
 	font-weight: 600;
+	text-align: center;
 }

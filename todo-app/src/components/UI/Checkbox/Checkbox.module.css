@@ -1,7 +1,14 @@
 .checkbox {
-	background: lightgray;
+	background: rgba(211, 211, 211, 0.5);
+	border: 1px solid lightgray;
 	width: 20px;
 	height: 20px;
+	min-width: 20px;
 
 	border-radius: 5px;
+	cursor: pointer;
+}
+
+.checkbox:hover {
+	background: lightgray;
 }

@@ -25,9 +25,3 @@
 	flex-direction: column;
 	gap: 40px;
 }
-
-.todo__content {
-	display: flex;
-	justify-content: space-between;
-	gap: 15px;
-}

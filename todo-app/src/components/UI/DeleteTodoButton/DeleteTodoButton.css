@@ -1,0 +1,30 @@
+.delete-todo {
+	width: 20px;
+	height: 20px;
+	min-width: 20px;
+	position: relative;
+
+	background: rgba(255, 99, 71, 0.5);
+	/* border: 1px solid tomato; */
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	z-index: 5;
+}
+.delete-todo:hover {
+	background: tomato;
+}
+
+/* .delete-todo::after {
+	content: '';
+	z-index: 10;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-image: url('./delete.png');
+	background-repeat: no-repeat;
+	background-size: 10px;
+	background-position: center center;
+} */

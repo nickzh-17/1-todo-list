@@ -1,9 +1,10 @@
 import { FC, useState } from 'react';
 import { TodoHeader } from './components/TodoHeader/TodoHeader';
-import { TodoItemPreview } from './components/TodoItemPreview/TodoItemPreview';
-import { TodoList } from './components/TodoList/TodoList';
-import './styles/App.css';
 import { ITodoItem } from './types/types';
+
+import { TodoAddSection } from './components/TodoAddSection/TodoAddSection';
+import { TodoContent } from './components/TodoContent/TodoContent';
+import './styles/App.css';
 
 const Data: ITodoItem[] = [
 	{ id: 1, title: 'Eat shit', description: 'It is yammy', comments: [] },
@@ -13,29 +14,41 @@ const Data: ITodoItem[] = [
 
 export const App: FC = () => {
 	const [todos, setTodos] = useState<ITodoItem[] | null>(Data);
-	const [currentTodo, setCurrentTodo] = useState<ITodoItem | null>(null);
 
-	const blurTodo = (e: React.MouseEvent<HTMLElement>) => {
-		const hasClosestClass = (element: Element, className: string): boolean => {
-			return Boolean(element.closest('.' + className));
-		};
+	const appClickHandler = (event: React.MouseEvent<HTMLElement>): void => {
+		// actionOnBackgroundClick(event, 'todo__content', () => setCurrentTodo(null));
+	};
+	const addTodo = (item: ITodoItem): void => {
+		if (todos) {
+			setTodos([...todos, item]);
+			return;
+		}
 
-		const targetElement = e.target as Element;
-		if (!hasClosestClass(targetElement, 'todo__content')) setCurrentTodo(null);
+		setTodos([item]);
+	};
+
+	const removeItem = (item: ITodoItem): void => {
+		const newTodos = todos ? todos.filter(todo => todo.id !== item.id) : null;
+
+		// setCurrentTodo(null);
+
+		if (!newTodos?.length) {
+			setTodos(null);
+
+			return;
+		}
+
+		setTodos(newTodos);
 	};
 
 	return (
-		<div onClick={blurTodo} className='app'>
-			<h1 onClick={() => setCurrentTodo(null)} className='app__heading'>
-				Todo App
-			</h1>
+		<div onClick={appClickHandler} className='app'>
+			<h1 className='app__heading'>Todo App</h1>
 			<div className='app__body'>
 				<div className='todo'>
 					<TodoHeader todos={todos} />
-					<div className='todo__content'>
-						<TodoList todos={Data} changeCurrentTodo={setCurrentTodo} />
-						<TodoItemPreview todo={currentTodo} />
-					</div>
+					<TodoAddSection todos={todos} addTodo={addTodo} />
+					<TodoContent todos={todos} removeItem={removeItem} />
 				</div>
 			</div>
 		</div>
