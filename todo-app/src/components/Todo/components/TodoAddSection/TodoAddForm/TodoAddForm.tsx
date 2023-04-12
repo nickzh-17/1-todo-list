@@ -1,3 +1,4 @@
+import { useActions } from 'hooks/useActions';
 import { FC, useState } from 'react';
 import { ITodoItem, todoStatus } from 'types/types';
 import { TextField } from './TextField/TextField';
@@ -5,7 +6,6 @@ import { TextField } from './TextField/TextField';
 import './TodoAddForm.css';
 
 interface TodoAddFormParams {
-	addTodo: (todoItem: ITodoItem) => void;
 	todos: ITodoItem[] | null;
 }
 
@@ -16,9 +16,11 @@ type FormValues = {
 
 const getNewId = () => Math.random().toString();
 
-export const TodoAddForm: FC<TodoAddFormParams> = ({ todos, addTodo }) => {
+export const TodoAddForm: FC<TodoAddFormParams> = ({ todos }) => {
 	const [title, setTitle] = useState<string>('');
 	const [description, setDescription] = useState<string>('');
+
+	const { addTodoRedux } = useActions();
 
 	const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
@@ -29,7 +31,7 @@ export const TodoAddForm: FC<TodoAddFormParams> = ({ todos, addTodo }) => {
 			status: todoStatus.progress,
 			comments: null,
 		};
-		addTodo(newTodo);
+		addTodoRedux(newTodo);
 	};
 
 	return (

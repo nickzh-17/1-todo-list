@@ -1,5 +1,4 @@
-import { TodosContext } from 'components/Todo/context/todo-context';
-import { FC, useContext } from 'react';
+import { FC } from 'react';
 import { ITodoItem } from 'types/types';
 import { ControlButton } from '../UI/ControlButton/ControlButton';
 import { controlMode } from '../UI/ControlButton/model';
@@ -10,8 +9,6 @@ interface TodoControlsParams {
 }
 
 export const TodoControls: FC<TodoControlsParams> = ({ todo }) => {
-	const todoContext = useContext(TodosContext);
-
 	return (
 		<div className='todo__controls'>
 			<ControlButton

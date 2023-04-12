@@ -4,20 +4,21 @@ import { ITodoItem } from 'types/types';
 import './TodoItemPreview.css';
 
 interface TodoItemParams {
-	todo: ITodoItem | null;
+	// todo: ITodoItem | null;
 	todos: ITodoItem[] | null;
 }
 
-export const TodoItemPreview: FC<TodoItemParams> = ({ todo, todos }) => {
+export const TodoItemPreview: FC<TodoItemParams> = ({ todos }) => {
 	return (
 		<div
 			className={classNames(
 				'todo-preview',
-				{ empty: !todo },
+				// { empty: !todo },
+				{ empty: true },
 				{ noTasks: !todos }
 			)}
 		>
-			{todo ? (
+			{/* {todo ? (
 				<>
 					<h2>{todo?.title}</h2>
 					<p>{todo?.description}</p>
@@ -26,7 +27,11 @@ export const TodoItemPreview: FC<TodoItemParams> = ({ todo, todos }) => {
 				<div className='todo-preview__empty-text'>
 					Click some Todo for details
 				</div>
-			)}
+			)} */}
+
+			<div className='todo-preview__empty-text'>
+				Click some Todo for details
+			</div>
 		</div>
 	);
 };

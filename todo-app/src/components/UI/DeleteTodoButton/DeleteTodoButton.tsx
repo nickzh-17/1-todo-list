@@ -5,7 +5,7 @@ import './DeleteTodoButton.css';
 
 interface DeleteTodoButtonParams {
 	todo: ITodoItem;
-	deleteTodo: (todo: ITodoItem) => void;
+	deleteTodo: () => void;
 }
 
 export const DeleteTodoButton: FC<DeleteTodoButtonParams> = ({
@@ -13,7 +13,7 @@ export const DeleteTodoButton: FC<DeleteTodoButtonParams> = ({
 	todo,
 }) => {
 	const deleteClickHandler = (): void => {
-		deleteTodo(todo);
+		deleteTodo();
 	};
 
 	return (

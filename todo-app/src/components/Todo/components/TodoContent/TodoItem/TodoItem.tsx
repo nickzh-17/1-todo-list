@@ -1,27 +1,28 @@
 import { getShortDesctiption } from 'components/Todo/utils/get-short-description';
 import { Checkbox } from 'components/UI/Checkbox/Checkbox';
 import { DeleteTodoButton } from 'components/UI/DeleteTodoButton/DeleteTodoButton';
+import { useActions } from 'hooks/useActions';
 import { FC, useState } from 'react';
 import { ITodoItem } from 'types/types';
 
+// import { removeTodoRedux } from 'store/todos/todos.slice';
 import './TodoItem.css';
 
 interface TodoItemProps {
 	todo: ITodoItem;
 	onClick: (todo: ITodoItem) => void;
-	deleteTodo: (todo: ITodoItem) => void;
 	isPreviewOpened: boolean;
-	isSelected: boolean;
+	// isSelected: boolean;
 }
 
 export const TodoItem: FC<TodoItemProps> = ({
 	todo,
 	onClick,
-	deleteTodo,
 	isPreviewOpened,
-	isSelected,
+	// isSelected,
 }) => {
 	const [status, setStatus] = useState<boolean>(false);
+	const { removeTodoRedux } = useActions();
 
 	const toggleStatus = (): void => setStatus(prev => !prev);
 
@@ -36,7 +37,13 @@ export const TodoItem: FC<TodoItemProps> = ({
 						: getShortDesctiption(todo.description, 30)}
 				</p>
 			</div>
-			<DeleteTodoButton deleteTodo={deleteTodo} todo={todo} />
+			<DeleteTodoButton
+				deleteTodo={() => {
+					removeTodoRedux(todo);
+					console.log(todo);
+				}}
+				todo={todo}
+			/>
 		</div>
 	);
 };

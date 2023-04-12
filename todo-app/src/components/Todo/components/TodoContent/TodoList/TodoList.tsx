@@ -1,3 +1,4 @@
+import { useTodos } from 'hooks/useTodos';
 import { FC } from 'react';
 import { ITodoItem } from 'types/types';
 import { TodoItem } from '../TodoItem/TodoItem';
@@ -5,29 +6,26 @@ import { TodoItem } from '../TodoItem/TodoItem';
 import './TodoList.css';
 
 interface TodoListParams {
-	todos: ITodoItem[] | null;
-	currentTodo: ITodoItem | null;
+	// currentTodo: ITodoItem | null;
 	isPreviewOpened: boolean;
 	onOpenPreview: (todo: ITodoItem) => void;
-	removeTodo: (todo: ITodoItem) => void;
 }
 
 export const TodoList: FC<TodoListParams> = ({
-	todos,
-	currentTodo,
+	// currentTodo,
 	isPreviewOpened,
 	onOpenPreview,
-	removeTodo,
 }) => {
+	const { todos } = useTodos();
+
 	return (
 		<div className='todo-list'>
-			{todos ? (
+			{todos.length ? (
 				todos?.map(todo => (
 					<TodoItem
 						isPreviewOpened={isPreviewOpened}
-						isSelected={todo.id === currentTodo?.id}
+						// isSelected={todo.id === currentTodo?.id}
 						onClick={onOpenPreview}
-						deleteTodo={removeTodo}
 						todo={todo}
 						key={todo.id}
 					/>

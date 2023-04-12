@@ -1,5 +1,5 @@
-import { TodosContext } from 'components/Todo/context/todo-context';
-import { FC, useContext } from 'react';
+import { useTodos } from 'hooks/useTodos';
+import { FC } from 'react';
 import { ITodoItem } from 'types/types';
 import { TodoControls } from '../TodoControls/TodoControls';
 import './TodoHeader.css';
@@ -10,7 +10,7 @@ interface TodoHeaderParams {
 }
 
 export const TodoHeader: FC<TodoHeaderParams> = () => {
-	const todos = useContext(TodosContext)?.todos;
+	const { todos } = useTodos();
 	const firstTodo: ITodoItem | null = todos ? todos[0] : null;
 
 	return (
