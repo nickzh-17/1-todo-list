@@ -1,0 +1,12 @@
+.todo-header {
+	position: relative;
+	padding: 15px;
+	border-radius: 10px;
+
+	background: white;
+}
+
+.todo-header__data-wrapper {
+	display: flex;
+	justify-content: space-between;
+}

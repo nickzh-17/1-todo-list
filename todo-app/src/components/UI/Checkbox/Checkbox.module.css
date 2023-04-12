@@ -1,6 +1,5 @@
 .checkbox {
-	background: rgba(211, 211, 211, 0.5);
-	border: 1px solid lightgray;
+	background: #c3f9cf;
 	width: 20px;
 	height: 20px;
 	min-width: 20px;
@@ -10,5 +9,5 @@
 }
 
 .checkbox:hover {
-	background: lightgray;
+	background: #8af3a1;
 }

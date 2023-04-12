@@ -1,18 +1,22 @@
 import { FC } from 'react';
-import { ITodoItem } from '../../../types/types';
+import { ITodoItem } from 'types/types';
 import { TodoItem } from '../TodoItem/TodoItem';
 
 import './TodoList.css';
 
 interface TodoListParams {
 	todos: ITodoItem[] | null;
-	changeCurrentTodo: (todo: ITodoItem) => void;
+	currentTodo: ITodoItem | null;
+	isPreviewOpened: boolean;
+	onOpenPreview: (todo: ITodoItem) => void;
 	removeTodo: (todo: ITodoItem) => void;
 }
 
 export const TodoList: FC<TodoListParams> = ({
 	todos,
-	changeCurrentTodo,
+	currentTodo,
+	isPreviewOpened,
+	onOpenPreview,
 	removeTodo,
 }) => {
 	return (
@@ -20,7 +24,9 @@ export const TodoList: FC<TodoListParams> = ({
 			{todos ? (
 				todos?.map(todo => (
 					<TodoItem
-						onClick={changeCurrentTodo}
+						isPreviewOpened={isPreviewOpened}
+						isSelected={todo.id === currentTodo?.id}
+						onClick={onOpenPreview}
 						deleteTodo={removeTodo}
 						todo={todo}
 						key={todo.id}

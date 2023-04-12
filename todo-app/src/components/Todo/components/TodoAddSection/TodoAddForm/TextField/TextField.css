@@ -1,0 +1,22 @@
+.text-field {
+	display: flex;
+	flex-direction: column;
+	gap: 7px;
+}
+
+.text-field__label {
+	font-family: 'Montserrat';
+	font-weight: 500;
+	font-size: 1rem;
+	color: #000000;
+}
+
+.text-field__input {
+	padding: 2px 5px;
+	background: rgba(217, 217, 217, 0.2);
+	border: 1px solid #d9d9d9;
+	border-radius: 5px;
+}
+.text-field__input:focus {
+	outline: none;
+}

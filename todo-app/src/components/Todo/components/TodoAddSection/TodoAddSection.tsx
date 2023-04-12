@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { FC, useState } from 'react';
 
-import { ITodoItem } from '../../types/types';
+import { ITodoItem } from 'types/types';
 import { TodoAddForm } from './TodoAddForm/TodoAddForm';
 
 import './TodoAddSection.css';
@@ -15,15 +15,13 @@ export const TodoAddSection: FC<TodoAddSectionProps> = ({ addTodo, todos }) => {
 	const [isFocus, setIsFocus] = useState<boolean>(false);
 
 	const openAddSection = () => {
-		// if (isFocus) return;
-
+		if (isFocus) return;
 		setIsFocus(prev => !prev);
 	};
 
 	const closeAddSection = () => {
-		if (!isFocus) return;
-
-		setIsFocus(prev => !prev);
+		// if (!isFocus) return;
+		// setIsFocus(prev => !prev);
 	};
 
 	return (

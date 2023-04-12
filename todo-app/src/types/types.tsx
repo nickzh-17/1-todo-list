@@ -5,8 +5,14 @@ export interface ITodoComment {
 }
 
 export interface ITodoItem {
-	id: number;
+	id: string;
 	title: string;
 	description: string;
+	status: todoStatus;
 	comments: ITodoComment[] | null;
+}
+
+export enum todoStatus {
+	done = 'done',
+	progress = 'progress',
 }

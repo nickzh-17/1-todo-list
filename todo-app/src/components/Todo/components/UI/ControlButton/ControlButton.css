@@ -1,0 +1,34 @@
+.todo__control-button {
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+
+	height: 1.5rem;
+	width: 6rem;
+
+	font-size: 1rem;
+	font-weight: 500;
+	color: rgba(30, 30, 30, 0.5);
+}
+
+.todo__control-button--complete {
+	background: #c3f9cf;
+	height: 2rem;
+}
+.todo__control-button--complete:hover {
+	background: #8af3a1;
+}
+
+.todo__control-button--update {
+	background: #d9d9d9;
+}
+.todo__control-button--update:hover {
+	background: #bbbbbb;
+}
+
+.todo__control-button--remove {
+	background: rgba(255, 99, 71, 0.5);
+}
+.todo__control-button--remove:hover {
+	background: rgba(255, 99, 71, 1);
+}

@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { FC } from 'react';
-import { ITodoItem } from '../../../types/types';
+import { ITodoItem } from 'types/types';
 import './TodoItemPreview.css';
 
 interface TodoItemParams {
