@@ -2,7 +2,6 @@ import classNames from 'classnames';
 import { getShortDesctiption } from 'components/Todo/utils/get-short-description';
 import { Checkbox } from 'components/UI/Checkbox/Checkbox';
 import { DeleteTodoButton } from 'components/UI/DeleteTodoButton/DeleteTodoButton';
-import { useActions } from 'hooks/useActions';
 import { FC, useState } from 'react';
 import { ITodoItem } from 'types/types';
 
@@ -25,7 +24,6 @@ export const TodoItem: FC<TodoItemProps> = ({
 	onRemoveTodo,
 }) => {
 	const [status, setStatus] = useState<boolean>(false);
-	const { removeTodo, clearCurrentTodo } = useActions();
 
 	const toggleStatus = (): void => setStatus(prev => !prev);
 

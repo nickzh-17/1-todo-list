@@ -18,7 +18,7 @@ export const currentTodoSlice = createSlice({
 	name: 'currentTodo',
 	initialState,
 	reducers: {
-		pickCurrentTodo: (state, { payload: todo }) => {
+		setCurrentTodo: (state, { payload: todo }) => {
 			console.log(todo);
 			state.todo = todo;
 		},
@@ -30,7 +30,7 @@ export const currentTodoSlice = createSlice({
 
 export const selectCurrentTodo = (state: RootState) => state.currentTodo.todo;
 
-export const { pickCurrentTodo, clearCurrentTodo } = currentTodoSlice.actions;
+export const { setCurrentTodo, clearCurrentTodo } = currentTodoSlice.actions;
 
 const { actions } = currentTodoSlice;
 export { actions as currentTodoActions };

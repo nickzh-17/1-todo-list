@@ -17,9 +17,7 @@ interface TodoListParams {
 export const TodoList: FC<TodoListParams> = ({ isPreviewOpened }) => {
 	const { todos } = useTodos();
 	const { currentTodo } = useCurrentTodo();
-	const { pickCurrentTodo, clearCurrentTodo, removeTodo } = useActions();
-
-	const setCurrentTodo = (todo: ITodoItem) => pickCurrentTodo(todo);
+	const { setCurrentTodo, clearCurrentTodo, removeTodo } = useActions();
 
 	const removeTodoHandler = (todo: ITodoItem) =>
 		removeTodoWithChange({
