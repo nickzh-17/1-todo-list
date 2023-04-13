@@ -1,14 +1,13 @@
 import { FC } from 'react';
-import { ITodoItem } from 'types/types';
 import { ControlButton } from '../UI/ControlButton/ControlButton';
 import { controlMode } from '../UI/ControlButton/model';
 import './TodoControls.css';
 
 interface TodoControlsParams {
-	todo: ITodoItem | null;
+	onRemoveTodo: () => void;
 }
 
-export const TodoControls: FC<TodoControlsParams> = ({ todo }) => {
+export const TodoControls: FC<TodoControlsParams> = ({ onRemoveTodo }) => {
 	return (
 		<div className='todo__controls'>
 			<ControlButton
@@ -28,7 +27,7 @@ export const TodoControls: FC<TodoControlsParams> = ({ todo }) => {
 					mode: controlMode.remove,
 					clickHandler: () => {
 						console.log('done');
-						// todoContext?.removeTodo(todo)
+						onRemoveTodo();
 					},
 				}}
 			/>

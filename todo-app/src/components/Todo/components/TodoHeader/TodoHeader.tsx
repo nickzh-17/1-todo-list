@@ -1,4 +1,6 @@
+import { removeTodoWithChange } from 'components/Todo/utils/remove-todo-with-change';
 import { useActions } from 'hooks/useActions';
+import { useCurrentTodo } from 'hooks/useCurrentTodo';
 import { useTodos } from 'hooks/useTodos';
 import { FC } from 'react';
 import { ITodoItem } from 'types/types';
@@ -8,16 +10,30 @@ import { TodoHeaderInfo } from './TodoHeaderInfo/TodoHeaderInfo';
 
 export const TodoHeader: FC = () => {
 	const { todos } = useTodos();
+	const { currentTodo } = useCurrentTodo();
+	const { setCurrentTodo, clearCurrentTodo, removeTodo } = useActions();
+
 	const firstTodo: ITodoItem | null = todos ? todos[0] : null;
 
-	const { removeTodo } = useActions();
+	const removeTodoHandler = () => {
+		if (!firstTodo) return;
+
+		removeTodoWithChange({
+			todos,
+			todo: firstTodo,
+			currentTodo,
+			setCurrentTodo,
+			clearCurrentTodo,
+			removeTodo,
+		});
+	};
 
 	return (
 		<div className='todo-header'>
 			{firstTodo ? (
 				<div className='todo-header__data-wrapper'>
 					<TodoHeaderInfo todo={firstTodo} />
-					<TodoControls todo={firstTodo} />
+					<TodoControls onRemoveTodo={removeTodoHandler} />
 				</div>
 			) : (
 				<h2>Your Todo List is empty</h2>
