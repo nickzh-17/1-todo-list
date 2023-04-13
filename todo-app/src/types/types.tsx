@@ -16,3 +16,7 @@ export enum todoStatus {
 	done = 'done',
 	progress = 'progress',
 }
+
+export interface ICurrentTodoState {
+	todo: ITodoItem | null;
+}

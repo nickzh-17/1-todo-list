@@ -20,7 +20,7 @@ export const TodoAddForm: FC<TodoAddFormParams> = ({ todos }) => {
 	const [title, setTitle] = useState<string>('');
 	const [description, setDescription] = useState<string>('');
 
-	const { addTodoRedux } = useActions();
+	const { addTodo } = useActions();
 
 	const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
@@ -31,7 +31,7 @@ export const TodoAddForm: FC<TodoAddFormParams> = ({ todos }) => {
 			status: todoStatus.progress,
 			comments: null,
 		};
-		addTodoRedux(newTodo);
+		addTodo(newTodo);
 	};
 
 	return (

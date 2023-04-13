@@ -8,14 +8,14 @@ export const todosSlice = createSlice({
 	name: 'todos',
 	initialState,
 	reducers: {
-		addTodoRedux: (state, { payload: todo }) => {
+		addTodo: (state, { payload: todo }) => {
 			const isExist = state.some(item => item.id === todo.id);
 
 			if (isExist) return;
 
 			state.push(todo);
 		},
-		removeTodoRedux: (state, { payload: todo }) => {
+		removeTodo: (state, { payload: todo }) => {
 			const index = state.findIndex(item => item.id === todo.id);
 
 			if (index !== -1) state.splice(index, 1);
@@ -23,7 +23,7 @@ export const todosSlice = createSlice({
 	},
 });
 
-export const { addTodoRedux, removeTodoRedux } = todosSlice.actions;
+export const { addTodo, removeTodo } = todosSlice.actions;
 export const { actions } = todosSlice;
 
 export default todosSlice.reducer;

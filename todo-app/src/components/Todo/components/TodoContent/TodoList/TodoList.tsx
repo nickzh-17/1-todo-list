@@ -1,3 +1,6 @@
+import { removeTodoWithChange } from 'components/Todo/utils/remove-todo-with-change';
+import { useActions } from 'hooks/useActions';
+import { useCurrentTodo } from 'hooks/useCurrentTodo';
 import { useTodos } from 'hooks/useTodos';
 import { FC } from 'react';
 import { ITodoItem } from 'types/types';
@@ -11,12 +14,22 @@ interface TodoListParams {
 	onOpenPreview: (todo: ITodoItem) => void;
 }
 
-export const TodoList: FC<TodoListParams> = ({
-	// currentTodo,
-	isPreviewOpened,
-	onOpenPreview,
-}) => {
+export const TodoList: FC<TodoListParams> = ({ isPreviewOpened }) => {
 	const { todos } = useTodos();
+	const { currentTodo } = useCurrentTodo();
+	const { pickCurrentTodo, clearCurrentTodo, removeTodo } = useActions();
+
+	const setCurrentTodo = (todo: ITodoItem) => pickCurrentTodo(todo);
+
+	const removeTodoHandler = (todo: ITodoItem, isSelected: boolean) =>
+		removeTodoWithChange({
+			todos,
+			todo,
+			isSelected,
+			setCurrentTodo,
+			clearCurrentTodo,
+			removeTodo,
+		});
 
 	return (
 		<div className='todo-list'>
@@ -24,8 +37,9 @@ export const TodoList: FC<TodoListParams> = ({
 				todos?.map(todo => (
 					<TodoItem
 						isPreviewOpened={isPreviewOpened}
-						// isSelected={todo.id === currentTodo?.id}
-						onClick={onOpenPreview}
+						isSelected={todo.id === currentTodo?.id}
+						onSetCurrentTodo={setCurrentTodo}
+						onRemoveTodo={removeTodoHandler}
 						todo={todo}
 						key={todo.id}
 					/>

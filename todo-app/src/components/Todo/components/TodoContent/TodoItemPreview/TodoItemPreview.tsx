@@ -1,37 +1,34 @@
 import classNames from 'classnames';
+import { useCurrentTodo } from 'hooks/useCurrentTodo';
 import { FC } from 'react';
 import { ITodoItem } from 'types/types';
 import './TodoItemPreview.css';
 
 interface TodoItemParams {
-	// todo: ITodoItem | null;
 	todos: ITodoItem[] | null;
 }
 
 export const TodoItemPreview: FC<TodoItemParams> = ({ todos }) => {
+	const { currentTodo } = useCurrentTodo();
+
 	return (
 		<div
 			className={classNames(
 				'todo-preview',
-				// { empty: !todo },
-				{ empty: true },
+				{ empty: !currentTodo?.id },
 				{ noTasks: !todos }
 			)}
 		>
-			{/* {todo ? (
+			{currentTodo ? (
 				<>
-					<h2>{todo?.title}</h2>
-					<p>{todo?.description}</p>
+					<h2>{currentTodo?.title}</h2>
+					<p>{currentTodo?.description}</p>
 				</>
 			) : (
 				<div className='todo-preview__empty-text'>
 					Click some Todo for details
 				</div>
-			)} */}
-
-			<div className='todo-preview__empty-text'>
-				Click some Todo for details
-			</div>
+			)}
 		</div>
 	);
 };

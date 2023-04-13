@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { getShortDesctiption } from 'components/Todo/utils/get-short-description';
 import { Checkbox } from 'components/UI/Checkbox/Checkbox';
 import { DeleteTodoButton } from 'components/UI/DeleteTodoButton/DeleteTodoButton';
@@ -10,26 +11,31 @@ import './TodoItem.css';
 
 interface TodoItemProps {
 	todo: ITodoItem;
-	onClick: (todo: ITodoItem) => void;
 	isPreviewOpened: boolean;
-	// isSelected: boolean;
+	isSelected: boolean;
+	onSetCurrentTodo: (todo: ITodoItem) => void;
+	onRemoveTodo: (todo: ITodoItem, isSelected: boolean) => void;
 }
 
 export const TodoItem: FC<TodoItemProps> = ({
 	todo,
-	onClick,
 	isPreviewOpened,
-	// isSelected,
+	isSelected,
+	onSetCurrentTodo,
+	onRemoveTodo,
 }) => {
 	const [status, setStatus] = useState<boolean>(false);
-	const { removeTodoRedux } = useActions();
+	const { removeTodo, clearCurrentTodo } = useActions();
 
 	const toggleStatus = (): void => setStatus(prev => !prev);
 
 	return (
-		<div onClick={() => onClick(todo)} className='todo-item'>
+		<div className='todo-item'>
 			<Checkbox checked={status} setChecked={toggleStatus} />
-			<div className='todo-item__info'>
+			<div
+				onClick={() => onSetCurrentTodo(todo)}
+				className={classNames('todo-item__info', { selected: isSelected })}
+			>
 				<h3 className='todo-item__title'>{todo.title}</h3>
 				<p className='todo-item__description'>
 					{isPreviewOpened
@@ -39,8 +45,7 @@ export const TodoItem: FC<TodoItemProps> = ({
 			</div>
 			<DeleteTodoButton
 				deleteTodo={() => {
-					removeTodoRedux(todo);
-					console.log(todo);
+					onRemoveTodo(todo, isSelected);
 				}}
 				todo={todo}
 			/>
