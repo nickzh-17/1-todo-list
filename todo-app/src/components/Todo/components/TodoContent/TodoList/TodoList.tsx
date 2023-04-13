@@ -21,11 +21,11 @@ export const TodoList: FC<TodoListParams> = ({ isPreviewOpened }) => {
 
 	const setCurrentTodo = (todo: ITodoItem) => pickCurrentTodo(todo);
 
-	const removeTodoHandler = (todo: ITodoItem, isSelected: boolean) =>
+	const removeTodoHandler = (todo: ITodoItem) =>
 		removeTodoWithChange({
 			todos,
 			todo,
-			isSelected,
+			currentTodo,
 			setCurrentTodo,
 			clearCurrentTodo,
 			removeTodo,

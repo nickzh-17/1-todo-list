@@ -1,3 +1,4 @@
+import { useActions } from 'hooks/useActions';
 import { useTodos } from 'hooks/useTodos';
 import { FC } from 'react';
 import { ITodoItem } from 'types/types';
@@ -5,13 +6,11 @@ import { TodoControls } from '../TodoControls/TodoControls';
 import './TodoHeader.css';
 import { TodoHeaderInfo } from './TodoHeaderInfo/TodoHeaderInfo';
 
-interface TodoHeaderParams {
-	// todos: ITodoItem[] | null;
-}
-
-export const TodoHeader: FC<TodoHeaderParams> = () => {
+export const TodoHeader: FC = () => {
 	const { todos } = useTodos();
 	const firstTodo: ITodoItem | null = todos ? todos[0] : null;
+
+	const { removeTodo } = useActions();
 
 	return (
 		<div className='todo-header'>

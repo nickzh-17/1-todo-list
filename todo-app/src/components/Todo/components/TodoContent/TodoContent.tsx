@@ -14,27 +14,14 @@ export const TodoContent: FC<TodoContentParams> = ({}) => {
 
 	const todos = useSelector((state: RootState) => state.todos);
 
-	// const currentTodo = todoContext?.currentTodo
-	// 	? todoContext?.currentTodo
-	// 	: null;
-	// const setCurrentTodo = todoContext?.setCurrentTodo;
-
 	const openPreview = (todo: ITodoItem): void => {
 		setIsPreviewOpened(true);
-		// setCurrentTodo?.(todo);
 	};
 
 	return (
 		<div className={classNames('todo__content', { noTasks: !todos })}>
-			<TodoList
-				// currentTodo={currentTodo}
-				isPreviewOpened={isPreviewOpened}
-				onOpenPreview={openPreview}
-			/>
-			<TodoItemPreview
-				todos={todos}
-				// todo={currentTodo}
-			/>
+			<TodoList isPreviewOpened={isPreviewOpened} onOpenPreview={openPreview} />
+			<TodoItemPreview todos={todos} />
 		</div>
 	);
 };

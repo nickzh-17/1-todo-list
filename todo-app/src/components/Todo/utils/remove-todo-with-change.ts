@@ -3,21 +3,26 @@ import { ITodoItem } from 'types/types';
 interface IRemoveTodoWithChange {
 	todos: ITodoItem[];
 	todo: ITodoItem;
-	isSelected: boolean;
+	currentTodo: ITodoItem | null;
 	removeTodo: (todo: ITodoItem) => void;
 	setCurrentTodo: (todo: ITodoItem) => void;
 	clearCurrentTodo: () => void;
 }
 
+const isTodoSelected = (todo: ITodoItem, currentTodo: ITodoItem | null) =>
+	todo.id === currentTodo?.id;
+
 export const removeTodoWithChange = (params: IRemoveTodoWithChange) => {
 	const {
 		todos,
 		todo,
-		isSelected,
+		currentTodo,
 		setCurrentTodo,
 		clearCurrentTodo,
 		removeTodo,
 	} = params;
+
+	const isSelected = isTodoSelected(todo, currentTodo);
 
 	if (todos.length === 1) {
 		removeTodo(todo);

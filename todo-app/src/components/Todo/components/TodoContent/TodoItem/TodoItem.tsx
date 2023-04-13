@@ -14,7 +14,7 @@ interface TodoItemProps {
 	isPreviewOpened: boolean;
 	isSelected: boolean;
 	onSetCurrentTodo: (todo: ITodoItem) => void;
-	onRemoveTodo: (todo: ITodoItem, isSelected: boolean) => void;
+	onRemoveTodo: (todo: ITodoItem) => void;
 }
 
 export const TodoItem: FC<TodoItemProps> = ({
@@ -45,7 +45,7 @@ export const TodoItem: FC<TodoItemProps> = ({
 			</div>
 			<DeleteTodoButton
 				deleteTodo={() => {
-					onRemoveTodo(todo, isSelected);
+					onRemoveTodo(todo);
 				}}
 				todo={todo}
 			/>
