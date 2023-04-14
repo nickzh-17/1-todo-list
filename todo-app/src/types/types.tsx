@@ -21,12 +21,21 @@ export enum todosFilters {
 	byStatus = 'byStatus',
 	byDate = 'byDate',
 }
+export enum sortOrders {
+	asc = 'asc',
+	desc = 'desc',
+}
 
 export interface ICurrentTodoState {
 	todo: ITodoItem | null;
 }
 
+export interface ISortConfig {
+	method: todosFilters;
+	order: sortOrders;
+}
+
 export interface ITodosState {
 	todos: ITodoItem[];
-	filter: todosFilters;
+	sortConfig: ISortConfig;
 }

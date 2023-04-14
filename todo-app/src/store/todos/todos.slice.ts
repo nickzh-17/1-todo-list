@@ -1,10 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { isTodoDone } from 'components/Todo/utils/todo-status';
-import { ITodosState, todosFilters, todoStatus } from 'types/types';
+import {
+	ISortConfig,
+	ITodosState,
+	sortOrders,
+	todosFilters,
+	todoStatus,
+} from 'types/types';
 
 // const initialState: ITodoItem[] = constantData;
 
-const DEFAULT_FILTER: todosFilters = todosFilters.byDate;
+const DEFAULT_SORT_CONFIG: ISortConfig = {
+	method: todosFilters.byDate,
+	order: sortOrders.asc,
+};
 
 const initialState: ITodosState = {
 	todos: [
@@ -16,7 +25,7 @@ const initialState: ITodosState = {
 			status: todoStatus.done,
 		},
 	],
-	filter: DEFAULT_FILTER,
+	sortConfig: DEFAULT_SORT_CONFIG,
 };
 
 export const todosSlice = createSlice({
@@ -44,11 +53,11 @@ export const todosSlice = createSlice({
 				? todoStatus.progress
 				: todoStatus.done;
 		},
-		setFilter: (state, { payload: newMethod }) => {
-			state.filter = newMethod;
+		setSortMethod: (state, { payload: newMethod }) => {
+			state.sortConfig.method = newMethod;
 		},
 		setDefaultFilter: state => {
-			state.filter = DEFAULT_FILTER;
+			state.sortConfig = DEFAULT_SORT_CONFIG;
 		},
 	},
 });
@@ -57,7 +66,7 @@ export const {
 	addTodo,
 	removeTodo,
 	toggleTodoStatus,
-	setFilter,
+	setSortMethod,
 	setDefaultFilter,
 } = todosSlice.actions;
 export const { actions } = todosSlice;

@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { useActions } from 'hooks/useActions';
-import { useFilter } from 'hooks/useFilter';
+import { useSortConfig } from 'hooks/useFilter';
 import { FC } from 'react';
 import { todosFilters } from 'types/types';
 import './FilterButton.css';
@@ -21,8 +21,8 @@ export const FilterButton: FC<FilterButtonParams> = ({
 	callback,
 	method,
 }) => {
-	const { filter } = useFilter();
-	const { setFilter, setDefaultFilter } = useActions();
+	const { sortConfig } = useSortConfig();
+	const { setSortMethod, setDefaultFilter } = useActions();
 
 	const methodClickHandler = (
 		newMethod: todosFilters,
@@ -30,16 +30,16 @@ export const FilterButton: FC<FilterButtonParams> = ({
 	) => {
 		if (newMethod === currentMethod) return;
 
-		setFilter(newMethod);
+		setSortMethod(newMethod);
 	};
 
 	return (
 		<button
 			className={classNames('filter-button', {
-				active: isFilterMethodSelected(method, filter),
+				active: isFilterMethodSelected(method, sortConfig.method),
 			})}
 			type='button'
-			onClick={() => methodClickHandler(method, filter)}
+			onClick={() => methodClickHandler(method, sortConfig.method)}
 		>
 			{filterText}
 		</button>

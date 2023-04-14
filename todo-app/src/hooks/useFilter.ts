@@ -1,7 +1,7 @@
 import { useTypedSelector } from './useTypedSelector';
 
-export const useFilter = () => {
-	const filter = useTypedSelector(state => state.todosState.filter);
+export const useSortConfig = () => {
+	const sortConfig = useTypedSelector(state => state.todosState.sortConfig);
 
-	return { filter };
+	return { sortConfig };
 };
