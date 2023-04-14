@@ -5,8 +5,12 @@
 	align-items: flex-start;
 }
 .todo-item.done {
-	background: green;
+	opacity: 0.5;
 }
+.todo-item.done .todo-item__info {
+	text-decoration: line-through;
+}
+
 .todo-item__info {
 	width: 100%;
 	display: flex;
