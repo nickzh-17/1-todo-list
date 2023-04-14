@@ -3,7 +3,7 @@ import { useActions } from 'hooks/useActions';
 import { useCurrentTodo } from 'hooks/useCurrentTodo';
 import { useTodos } from 'hooks/useTodos';
 import { FC } from 'react';
-import { ITodoItem } from 'types/types';
+import { ITodoItem, todoStatus } from 'types/types';
 import { TodoControls } from '../TodoControls/TodoControls';
 import './TodoHeader.css';
 import { TodoHeaderInfo } from './TodoHeaderInfo/TodoHeaderInfo';
@@ -14,14 +14,16 @@ export const TodoHeader: FC = () => {
 	const { setCurrentTodo, clearCurrentTodo, removeTodo, toggleTodoStatus } =
 		useActions();
 
-	const firstTodo: ITodoItem | null = todos ? todos[0] : null;
+	const firstUncompleteTodo: ITodoItem | null = todos.length
+		? todos.filter(item => item.status === todoStatus.progress)[0]
+		: null;
 
 	const removeTodoHandler = () => {
-		if (!firstTodo) return;
+		if (!firstUncompleteTodo) return;
 
 		removeTodoWithChange({
 			todos,
-			todo: firstTodo,
+			todo: firstUncompleteTodo,
 			currentTodo,
 			setCurrentTodo,
 			clearCurrentTodo,
@@ -31,16 +33,18 @@ export const TodoHeader: FC = () => {
 
 	return (
 		<div className='todo-header'>
-			{firstTodo ? (
+			{firstUncompleteTodo ? (
 				<div className='todo-header__data-wrapper'>
-					<TodoHeaderInfo todo={firstTodo} />
+					<TodoHeaderInfo todo={firstUncompleteTodo} />
 					<TodoControls
 						onRemoveTodo={removeTodoHandler}
-						onToggleTodoStatus={() => toggleTodoStatus(firstTodo)}
+						onToggleTodoStatus={() => toggleTodoStatus(firstUncompleteTodo)}
 					/>
 				</div>
 			) : (
-				<h2>Your Todo List is empty</h2>
+				<h2>
+					{todos.length ? 'You did all your tasks!' : 'Your Todo List is empty'}
+				</h2>
 			)}
 		</div>
 	);
