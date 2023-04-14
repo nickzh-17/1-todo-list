@@ -1,4 +1,3 @@
-import { constantData } from 'constantData';
 import { FC } from 'react';
 import { Todo } from './components/Todo/Todo';
 
@@ -9,7 +8,7 @@ export const App: FC = () => {
 		<div className='app'>
 			<h1 className='app__heading'>Todo App</h1>
 			<div className='app__body'>
-				<Todo initialTodos={constantData} />
+				<Todo />
 			</div>
 		</div>
 	);

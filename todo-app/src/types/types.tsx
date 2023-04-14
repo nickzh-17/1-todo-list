@@ -10,6 +10,7 @@ export interface ITodoItem {
 	description: string;
 	status: todoStatus;
 	comments: ITodoComment[] | null;
+	creationDate: string;
 }
 
 export enum todoStatus {
@@ -17,7 +18,7 @@ export enum todoStatus {
 	progress = 'progress',
 }
 
-export enum todosFilters {
+export enum sortMethods {
 	byStatus = 'byStatus',
 	byDate = 'byDate',
 }
@@ -31,7 +32,7 @@ export interface ICurrentTodoState {
 }
 
 export interface ISortConfig {
-	method: todosFilters;
+	method: sortMethods;
 	order: sortOrders;
 }
 

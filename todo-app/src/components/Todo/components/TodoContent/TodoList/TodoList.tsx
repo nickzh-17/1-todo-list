@@ -1,7 +1,10 @@
 import { removeTodoWithChange } from 'components/Todo/utils/remove-todo-with-change';
 import { useActions } from 'hooks/useActions';
 import { useCurrentTodo } from 'hooks/useCurrentTodo';
+import { useSortConfig } from 'hooks/useFilter';
+import { useSortedTodosByStatus } from 'hooks/useFilteredTodos';
 import { useTodos } from 'hooks/useTodos';
+
 import { FC } from 'react';
 import { ITodoItem } from 'types/types';
 import { TodoItem } from '../TodoItem/TodoItem';
@@ -17,7 +20,10 @@ interface TodoListParams {
 export const TodoList: FC<TodoListParams> = ({ isPreviewOpened }) => {
 	const { todos } = useTodos();
 	const { currentTodo } = useCurrentTodo();
+	const { sortConfig } = useSortConfig();
 	const { setCurrentTodo, clearCurrentTodo, removeTodo } = useActions();
+
+	const resTodos = useSortedTodosByStatus(todos, sortConfig);
 
 	const removeTodoHandler = (todo: ITodoItem) =>
 		removeTodoWithChange({
@@ -31,8 +37,8 @@ export const TodoList: FC<TodoListParams> = ({ isPreviewOpened }) => {
 
 	return (
 		<div className='todo-list'>
-			{todos.length ? (
-				todos?.map(todo => (
+			{resTodos.length ? (
+				resTodos?.map(todo => (
 					<TodoItem
 						isPreviewOpened={isPreviewOpened}
 						isSelected={todo.id === currentTodo?.id}

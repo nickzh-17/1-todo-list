@@ -2,18 +2,18 @@ import classNames from 'classnames';
 import { useActions } from 'hooks/useActions';
 import { useSortConfig } from 'hooks/useFilter';
 import { FC } from 'react';
-import { todosFilters } from 'types/types';
+import { sortMethods, sortOrders } from 'types/types';
 import './FilterButton.css';
 
 const isFilterMethodSelected = (
-	method: todosFilters,
-	currentMethod: todosFilters
+	method: sortMethods,
+	currentMethod: sortMethods
 ) => method === currentMethod;
 
 interface FilterButtonParams {
 	filterText: string;
 	callback: () => void;
-	method: todosFilters;
+	method: sortMethods;
 }
 
 export const FilterButton: FC<FilterButtonParams> = ({
@@ -22,13 +22,19 @@ export const FilterButton: FC<FilterButtonParams> = ({
 	method,
 }) => {
 	const { sortConfig } = useSortConfig();
-	const { setSortMethod, setDefaultFilter } = useActions();
+	const { setSortMethod, setSortOrder } = useActions();
 
 	const methodClickHandler = (
-		newMethod: todosFilters,
-		currentMethod: todosFilters
+		newMethod: sortMethods,
+		currentMethod: sortMethods
 	) => {
-		if (newMethod === currentMethod) return;
+		if (newMethod === currentMethod) {
+			const toggledOrder =
+				sortConfig.order === sortOrders.asc ? sortOrders.desc : sortOrders.asc;
+
+			setSortOrder(toggledOrder);
+			return;
+		}
 
 		setSortMethod(newMethod);
 	};

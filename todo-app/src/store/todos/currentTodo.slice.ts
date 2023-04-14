@@ -2,14 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from 'store/store';
 import { ICurrentTodoState } from 'types/types';
 
-// const clearTodo: ITodoItem = {
-// 	id: '',
-// 	title: '',
-// 	description: '',
-// 	status: todoStatus.progress,
-// 	comments: null,
-// };
-
 const initialState: ICurrentTodoState = {
 	todo: null,
 };

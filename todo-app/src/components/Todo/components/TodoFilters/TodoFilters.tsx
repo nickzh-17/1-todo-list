@@ -1,4 +1,4 @@
-import { todosFilters } from 'types/types';
+import { sortMethods } from 'types/types';
 import { FilterButton } from '../UI/FilterButton/FIlterButton';
 import './TodoFilter.css';
 
@@ -11,12 +11,12 @@ export const TodoFilters = () => {
 				<FilterButton
 					filterText='По дате'
 					callback={() => console.log()}
-					method={todosFilters.byDate}
+					method={sortMethods.byDate}
 				/>
 				<FilterButton
 					filterText='По статусу'
 					callback={() => console.log()}
-					method={todosFilters.byStatus}
+					method={sortMethods.byStatus}
 				/>
 			</div>
 		</div>

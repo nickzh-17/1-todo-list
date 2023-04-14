@@ -30,6 +30,7 @@ export const TodoAddForm: FC<TodoAddFormParams> = ({ todos }) => {
 			description: description,
 			status: todoStatus.progress,
 			comments: null,
+			creationDate: Date(),
 		};
 		addTodo(newTodo);
 	};

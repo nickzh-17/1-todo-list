@@ -3,28 +3,20 @@ import { isTodoDone } from 'components/Todo/utils/todo-status';
 import {
 	ISortConfig,
 	ITodosState,
+	sortMethods,
 	sortOrders,
-	todosFilters,
 	todoStatus,
 } from 'types/types';
 
 // const initialState: ITodoItem[] = constantData;
 
-const DEFAULT_SORT_CONFIG: ISortConfig = {
-	method: todosFilters.byDate,
+export const DEFAULT_SORT_CONFIG: ISortConfig = {
+	method: sortMethods.byDate,
 	order: sortOrders.asc,
 };
 
 const initialState: ITodosState = {
-	todos: [
-		{
-			id: 'asdasd',
-			title: 'test done',
-			description: 'test done',
-			comments: null,
-			status: todoStatus.done,
-		},
-	],
+	todos: [],
 	sortConfig: DEFAULT_SORT_CONFIG,
 };
 
@@ -56,6 +48,9 @@ export const todosSlice = createSlice({
 		setSortMethod: (state, { payload: newMethod }) => {
 			state.sortConfig.method = newMethod;
 		},
+		setSortOrder: (state, { payload: newOrder }) => {
+			state.sortConfig.order = newOrder;
+		},
 		setDefaultFilter: state => {
 			state.sortConfig = DEFAULT_SORT_CONFIG;
 		},
@@ -68,6 +63,7 @@ export const {
 	toggleTodoStatus,
 	setSortMethod,
 	setDefaultFilter,
+	setSortOrder,
 } = todosSlice.actions;
 export const { actions } = todosSlice;
 
