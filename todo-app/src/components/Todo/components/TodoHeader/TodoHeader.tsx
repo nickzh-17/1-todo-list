@@ -11,7 +11,8 @@ import { TodoHeaderInfo } from './TodoHeaderInfo/TodoHeaderInfo';
 export const TodoHeader: FC = () => {
 	const { todos } = useTodos();
 	const { currentTodo } = useCurrentTodo();
-	const { setCurrentTodo, clearCurrentTodo, removeTodo } = useActions();
+	const { setCurrentTodo, clearCurrentTodo, removeTodo, toggleTodoStatus } =
+		useActions();
 
 	const firstTodo: ITodoItem | null = todos ? todos[0] : null;
 
@@ -33,7 +34,10 @@ export const TodoHeader: FC = () => {
 			{firstTodo ? (
 				<div className='todo-header__data-wrapper'>
 					<TodoHeaderInfo todo={firstTodo} />
-					<TodoControls onRemoveTodo={removeTodoHandler} />
+					<TodoControls
+						onRemoveTodo={removeTodoHandler}
+						onToggleTodoStatus={() => toggleTodoStatus(firstTodo)}
+					/>
 				</div>
 			) : (
 				<h2>Your Todo List is empty</h2>

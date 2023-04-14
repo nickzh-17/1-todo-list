@@ -5,15 +5,19 @@ import './TodoControls.css';
 
 interface TodoControlsParams {
 	onRemoveTodo: () => void;
+	onToggleTodoStatus: () => void;
 }
 
-export const TodoControls: FC<TodoControlsParams> = ({ onRemoveTodo }) => {
+export const TodoControls: FC<TodoControlsParams> = ({
+	onRemoveTodo,
+	onToggleTodoStatus,
+}) => {
 	return (
 		<div className='todo__controls'>
 			<ControlButton
 				controlOptions={{
 					mode: controlMode.complete,
-					clickHandler: () => console.log('done'),
+					clickHandler: () => onToggleTodoStatus(),
 				}}
 			/>
 			<ControlButton
