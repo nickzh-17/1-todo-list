@@ -17,6 +17,16 @@ export enum todoStatus {
 	progress = 'progress',
 }
 
+export enum todosFilters {
+	byStatus = 'byStatus',
+	byDate = 'byDate',
+}
+
 export interface ICurrentTodoState {
 	todo: ITodoItem | null;
+}
+
+export interface ITodosState {
+	todos: ITodoItem[];
+	filter: todosFilters;
 }

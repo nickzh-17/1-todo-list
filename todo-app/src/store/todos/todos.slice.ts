@@ -1,36 +1,39 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { isTodoDone } from 'components/Todo/utils/todo-status';
-import { ITodoItem, todoStatus } from 'types/types';
+import { ITodosState, todosFilters, todoStatus } from 'types/types';
 
 // const initialState: ITodoItem[] = constantData;
-const initialState: ITodoItem[] = [
-	{
-		id: 'asdasd',
-		title: 'test done',
-		description: 'test done',
-		comments: null,
-		status: todoStatus.done,
-	},
-];
+const initialState: ITodosState = {
+	todos: [
+		{
+			id: 'asdasd',
+			title: 'test done',
+			description: 'test done',
+			comments: null,
+			status: todoStatus.done,
+		},
+	],
+	filter: todosFilters.byDate,
+};
 
 export const todosSlice = createSlice({
-	name: 'todos',
+	name: 'todosState',
 	initialState,
 	reducers: {
 		addTodo: (state, { payload: todo }) => {
-			const isExist = state.some(item => item.id === todo.id);
+			const isExist = state.todos.some(item => item.id === todo.id);
 
 			if (isExist) return;
 
-			state.push(todo);
+			state.todos.push(todo);
 		},
 		removeTodo: (state, { payload: todo }) => {
-			const index = state.findIndex(item => item.id === todo.id);
+			const index = state.todos.findIndex(item => item.id === todo.id);
 
-			if (index !== -1) state.splice(index, 1);
+			if (index !== -1) state.todos.splice(index, 1);
 		},
 		toggleTodoStatus: (state, { payload: todo }) => {
-			const stateTodo = state.find(item => item.id === todo.id);
+			const stateTodo = state.todos.find(item => item.id === todo.id);
 
 			if (!stateTodo) return;
 

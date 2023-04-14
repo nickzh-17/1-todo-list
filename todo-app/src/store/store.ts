@@ -3,7 +3,7 @@ import currentTodoReducer from './todos/currentTodo.slice';
 import todosReducer from './todos/todos.slice';
 
 const reducers = combineReducers({
-	todos: todosReducer,
+	todosState: todosReducer,
 	currentTodo: currentTodoReducer,
 });
 

@@ -1,7 +1,6 @@
 import classNames from 'classnames';
+import { useTodos } from 'hooks/useTodos';
 import { FC, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from 'store/store';
 
 import { TodoAddForm } from './TodoAddForm/TodoAddForm';
 
@@ -11,7 +10,7 @@ interface TodoAddSectionProps {}
 
 export const TodoAddSection: FC<TodoAddSectionProps> = () => {
 	const [isFocus, setIsFocus] = useState<boolean>(false);
-	const todosT = useSelector((state: RootState) => state.todos);
+	const { todos } = useTodos();
 
 	const openAddSection = () => {
 		if (isFocus) return;
@@ -29,11 +28,11 @@ export const TodoAddSection: FC<TodoAddSectionProps> = () => {
 			className={classNames(
 				'add-section',
 				{ opened: isFocus },
-				{ big: !todosT.length }
+				{ big: !todos.length }
 			)}
 		>
 			{isFocus ? (
-				<TodoAddForm todos={todosT} />
+				<TodoAddForm todos={todos} />
 			) : (
 				<button onClick={openAddSection} className='add-section__add-button'>
 					Add new Todo
