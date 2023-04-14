@@ -3,6 +3,9 @@ import { isTodoDone } from 'components/Todo/utils/todo-status';
 import { ITodosState, todosFilters, todoStatus } from 'types/types';
 
 // const initialState: ITodoItem[] = constantData;
+
+const DEFAULT_FILTER: todosFilters = todosFilters.byDate;
+
 const initialState: ITodosState = {
 	todos: [
 		{
@@ -13,7 +16,7 @@ const initialState: ITodosState = {
 			status: todoStatus.done,
 		},
 	],
-	filter: todosFilters.byDate,
+	filter: DEFAULT_FILTER,
 };
 
 export const todosSlice = createSlice({
@@ -41,10 +44,22 @@ export const todosSlice = createSlice({
 				? todoStatus.progress
 				: todoStatus.done;
 		},
+		setFilter: (state, { payload: newMethod }) => {
+			state.filter = newMethod;
+		},
+		setDefaultFilter: state => {
+			state.filter = DEFAULT_FILTER;
+		},
 	},
 });
 
-export const { addTodo, removeTodo, toggleTodoStatus } = todosSlice.actions;
+export const {
+	addTodo,
+	removeTodo,
+	toggleTodoStatus,
+	setFilter,
+	setDefaultFilter,
+} = todosSlice.actions;
 export const { actions } = todosSlice;
 
 export default todosSlice.reducer;
