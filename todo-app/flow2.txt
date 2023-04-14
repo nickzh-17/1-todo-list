@@ -1,0 +1,30 @@
+[+] - change State management from Context to Redux by video
+
+[] - create DB by JSON Server
+
+[] - work with JSON Server
+	[] - get todos GET
+	[] - todo done POST
+	[] - todo changed POST?
+
+
+[] - Complete-task logic
+	[] - Add new props
+		[] - boolean flag for Item
+		[] - Date when Done
+	[] - Styling if Done
+		[] - Checkbox
+		[] - Text (crossline)
+		[] - maybe some Background
+
+[] - Date props
+	[] - implicit adding Date-Create
+	[] - explicit adding Date-ToDo (in Form)
+
+[] - Relax: Трава
+
+[] - Sort
+	[] - 1. By Done\Todo (def: todo, done)
+	[] - 2. By Date-Todo (def: DESC - по убыванию)
+	[] - 3. By Date-Created (???)
+

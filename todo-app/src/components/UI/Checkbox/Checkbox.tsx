@@ -7,5 +7,5 @@ interface CheckboxParams {
 }
 
 export const Checkbox: FC<CheckboxParams> = ({ checked, setChecked }) => {
-	return <div className={classes.checkbox} />;
+	return <div className={classes.checkbox} onClick={setChecked} />;
 };

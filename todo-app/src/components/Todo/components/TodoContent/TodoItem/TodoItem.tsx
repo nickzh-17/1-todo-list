@@ -1,8 +1,10 @@
 import classNames from 'classnames';
 import { getShortDesctiption } from 'components/Todo/utils/get-short-description';
+import { isTodoDone } from 'components/Todo/utils/todo-status';
 import { Checkbox } from 'components/UI/Checkbox/Checkbox';
 import { DeleteTodoButton } from 'components/UI/DeleteTodoButton/DeleteTodoButton';
-import { FC, useState } from 'react';
+import { useActions } from 'hooks/useActions';
+import { FC } from 'react';
 import { ITodoItem } from 'types/types';
 
 // import { removeTodoRedux } from 'store/todos/todos.slice';
@@ -23,13 +25,14 @@ export const TodoItem: FC<TodoItemProps> = ({
 	onSetCurrentTodo,
 	onRemoveTodo,
 }) => {
-	const [status, setStatus] = useState<boolean>(false);
-
-	const toggleStatus = (): void => setStatus(prev => !prev);
+	const { toggleTodoStatus } = useActions();
 
 	return (
-		<div className='todo-item'>
-			<Checkbox checked={status} setChecked={toggleStatus} />
+		<div className={classNames('todo-item', { done: isTodoDone(todo) })}>
+			<Checkbox
+				checked={isTodoDone(todo)}
+				setChecked={() => toggleTodoStatus(todo)}
+			/>
 			<div
 				onClick={() => onSetCurrentTodo(todo)}
 				className={classNames('todo-item__info', { selected: isSelected })}
